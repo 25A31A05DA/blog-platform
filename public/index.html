@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opal Journal - Blog Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Opal Journal home">
+        <span class="brand-mark">O</span>
+        <span>Opal Journal</span>
+      </a>
+      <nav class="nav">
+        <a href="#posts">Posts</a>
+        <a href="#editor">Write</a>
+        <button class="ghost-button" id="openAuthButton" type="button">Login</button>
+        <button class="primary-button hidden" id="logoutButton" type="button">Logout</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">REST API + authentication + comments</p>
+          <h1>Publish sharp ideas in a calmer, premium blog workspace.</h1>
+          <p class="hero-text">
+            Register, login, create posts, edit your work, delete drafts, and hold focused conversations with readers.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#editor">Start writing</a>
+            <a class="secondary-button" href="#posts">Explore posts</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Platform overview">
+          <div>
+            <span class="metric-value" id="postCount">0</span>
+            <span class="metric-label">Published posts</span>
+          </div>
+          <div>
+            <span class="metric-value" id="commentCount">0</span>
+            <span class="metric-label">Reader comments</span>
+          </div>
+          <div>
+            <span class="metric-value">API</span>
+            <span class="metric-label">RESTful backend</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading" id="posts">
+          <p class="eyebrow">Latest writing</p>
+          <h2>Posts and discussions</h2>
+        </div>
+        <div class="layout">
+          <section class="feed" id="postFeed" aria-live="polite"></section>
+
+          <aside class="editor-shell" id="editor">
+            <div class="editor-header">
+              <div>
+                <p class="eyebrow">Author desk</p>
+                <h2 id="editorTitle">Create post</h2>
+              </div>
+              <button class="icon-button hidden" id="cancelEditButton" type="button" title="Cancel edit">×</button>
+            </div>
+            <form id="postForm" class="form">
+              <label>
+                Title
+                <input id="postTitle" name="title" type="text" placeholder="How to build better writing habits" required />
+              </label>
+              <label>
+                Excerpt
+                <input id="postExcerpt" name="excerpt" type="text" placeholder="A concise summary for readers" required />
+              </label>
+              <label>
+                Content
+                <textarea id="postContent" name="content" rows="8" placeholder="Write the complete article here..." required></textarea>
+              </label>
+              <button class="primary-button full-width" type="submit">Publish post</button>
+              <p class="helper" id="editorHelper">Login or register to publish new posts.</p>
+            </form>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="auth-modal" id="authDialog">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Account access</p>
+          <h2 id="authTitle">Login</h2>
+        </div>
+        <button class="icon-button" id="closeAuthButton" type="button" title="Close">×</button>
+      </div>
+      <div class="segmented">
+        <button class="segment active" id="loginTab" type="button">Login</button>
+        <button class="segment" id="registerTab" type="button">Register</button>
+      </div>
+      <form id="authForm" class="form">
+        <label class="hidden" id="nameField">
+          Name
+          <input id="authName" name="name" type="text" placeholder="Your name" />
+        </label>
+        <label>
+          Email
+          <input id="authEmail" name="email" type="email" placeholder="you@example.com" required />
+        </label>
+        <label>
+          Password
+          <input id="authPassword" name="password" type="password" placeholder="Minimum 6 characters" required />
+        </label>
+        <button class="primary-button full-width" id="authSubmit" type="submit">Login</button>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>

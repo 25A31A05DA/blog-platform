@@ -1,0 +1,6 @@
+node_modules/
+.env
+data/db.json
+blog-platform-preview.png
+*.log
+.DS_Store
